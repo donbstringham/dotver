@@ -12,7 +12,9 @@
     "php": "^5.3"
   },
   "require-dev": {
-    "phpspec/phpspec": "^2.2"
+    "phpspec/phpspec": "^2.2",
+    "phpunit/phpunit": "^4.6",
+    "codeclimate/php-test-reporter": "dev-master"
   },
   "config": {
     "bin-dir": "bin"
