@@ -1,0 +1,7 @@
+suites:
+    app_suites:
+        namespace: Donbstringham\Common\Version\
+        psr4_prefix: Donbstringham\Common\Version\
+        src_path: src
+
+formatter.name: pretty
