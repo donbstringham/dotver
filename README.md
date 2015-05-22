@@ -3,6 +3,7 @@
 **GIT tags used as appliction version numbers**
 
 [![Stories in Ready](https://badge.waffle.io/donbstringham/d3x.png?label=ready&title=Ready)](https://waffle.io/donbstringham/dot-version)
+[![Build Status](https://travis-ci.org/donbstringham/dotver.svg)](https://travis-ci.org/donbstringham/dotver)
 [![Code Climate](https://codeclimate.com/repos/555e0d596956805bad00a0e4/badges/7b03b962912b882a6a71/gpa.svg)](https://codeclimate.com/repos/555e0d596956805bad00a0e4/feed)
 
 This simple library reads the `git tag` command's output and stores it for use in a .ver file.  This file can then be used as the application's version.  Please follow [Semantic Versioning](http://semver.org/)! 
