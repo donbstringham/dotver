@@ -4,4 +4,13 @@ suites:
         psr4_prefix: Donbstringham\Common\Version\
         src_path: src
 
+code_coverage:
+  format:
+    - clover
+  output:
+    clover: coverage.xml
+
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
 formatter.name: pretty
