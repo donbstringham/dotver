@@ -1,7 +1,7 @@
 suites:
     app_suites:
-        namespace: Donbstringham\Common\Version\
-        psr4_prefix: Donbstringham\Common\Version\
+        namespace: Donbstringham\Version\
+        psr4_prefix: Donbstringham\Version\
         src_path: src
 
 code_coverage:

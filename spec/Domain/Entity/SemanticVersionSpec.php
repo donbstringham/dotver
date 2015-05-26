@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Donbstringham\Common\Version\Core;
+namespace spec\Donbstringham\Version\Domain\Entity;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -9,7 +9,7 @@ class SemanticVersionSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Donbstringham\Common\Version\Core\SemanticVersion');
+        $this->shouldHaveType('Donbstringham\Version\Domain\Entity\SemanticVersion');
     }
 
     function it_has_getMajor_method()

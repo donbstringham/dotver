@@ -7,7 +7,7 @@
  * PHP version 5
  *
  * @category  PHP
- * @package   Donbstringham\Common\Version\Core
+ * @package   Donbstringham\Version\Domain\Entity
  * @author    donbstringham <donbstringham@gmail.com>
  * @copyright 2015 © donbstringham
  * @license   MIT
@@ -17,13 +17,13 @@
  * $LastChangedBy$
  */
 
-namespace Donbstringham\Common\Version\Core;
+namespace Donbstringham\Version\Domain\Entity;
 
 /**
  * Class SemanticVersion
  *
  * @category  PHP
- * @package   Donbstringham\Common\Version\Core
+ * @package   Donbstringham\Version\Domain\Entity
  * @author    donbstringham <donbstringham@gmail.com>
  * @copyright 2015 © donbstringham
  * @license   MIT
