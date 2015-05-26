@@ -5,6 +5,19 @@ namespace spec\Donbstringham\Version\Domain\Entity;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+/**
+ * Class SemanticVersionSpec
+ *
+ * @category  PHP
+ * @package   spec\Donbstringham\Version\Domain\Entity
+ * @author    donbstringham <donbstringham@gmail.com>
+ * @copyright 2015 © donbstringham
+ * @license   MIT
+ * @version   Release: 0.1
+ * @link      http://donbstringham.us
+ *
+ * @mixin     \Donbstringham\Version\Domain\Entity\SemanticVersion
+ */
 class SemanticVersionSpec extends ObjectBehavior
 {
     function it_is_initializable()

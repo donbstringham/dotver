@@ -29,7 +29,7 @@ namespace Donbstringham\Version\Domain\Entity;
  * @license   MIT
  * @version   $Revision$
  */
-class SemanticVersion
+class SemanticVersion extends AbstractEntity
 {
     /** @var integer */
     protected $major;
