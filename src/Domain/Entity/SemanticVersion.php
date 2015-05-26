@@ -101,6 +101,26 @@ class SemanticVersion extends AbstractEntity
     }
 
     /**
+     * Function setVersion
+     *
+     * @param int $major
+     * @param int $minor
+     * @param int $patch
+     *
+     * @return $this
+     *
+     * @access public
+     */
+    public function setVersion($major = 0, $minor = 1, $patch = 0)
+    {
+        $this->major = $major;
+        $this->minor = $minor;
+        $this->patch = $patch;
+
+        return $this;
+    }
+
+    /**
      * Function toString
      *
      * @return string
