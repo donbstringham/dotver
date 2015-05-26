@@ -10,6 +10,9 @@ before_script:
 script:
   - ./bin/phpspec run
 
+after_script:
+  - ./bin/test-reporter --coverage-report="clover.xml"
+
 notifications:
   slack: donbstringham:4G7cilG3EnSG0vbQwlNcmcnd
 
