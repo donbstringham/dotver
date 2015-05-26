@@ -3,6 +3,13 @@ language: php
 php:
   - 5.6
 
+addons:
+    code_climate:
+        repo_token: 2df93cbdea3ad7a63c4892eada5ffc2c0f13bc68073e2d1d315310ac418f1a90
+
+env:
+  - CODECLIMATE_REPO_TOKEN=2df93cbdea3ad7a63c4892eada5ffc2c0f13bc68073e2d1d315310ac418f1a90
+
 before_script:
   - composer selfupdate
   - composer install -n --prefer-dist
@@ -15,7 +22,3 @@ after_script:
 
 notifications:
   slack: donbstringham:4G7cilG3EnSG0vbQwlNcmcnd
-
-addons:
-    code_climate:
-        repo_token: 2df93cbdea3ad7a63c4892eada5ffc2c0f13bc68073e2d1d315310ac418f1a90
