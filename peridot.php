@@ -31,7 +31,7 @@ return function(EventEmitterInterface $emitter) {
     });
 
     $emitter->on('code-coverage.start', function (AbstractCodeCoverageReporter $reporter) {
-        $reporter->addDirectoryToWhitelist(__DIR__ . '/src')->addDirectoryToWhitelist(__DIR__ . '/specs');
+        $reporter->addDirectoryToWhitelist(__DIR__ . '/src');
     });
 
     $watcher = new WatcherPlugin($emitter);
