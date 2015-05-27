@@ -15,10 +15,10 @@ before_script:
   - composer install -n --prefer-dist
 
 script:
-  - ./bin/phpspec run
+  - ./bin/peridot --reporter=clover-code-coverage
 
 after_script:
-  - ./bin/test-reporter --coverage-report="clover.xml"
+  - ./bin/test-reporter --coverage-report="./code-coverage-report/clover.xml"
 
 notifications:
   slack: donbstringham:4G7cilG3EnSG0vbQwlNcmcnd

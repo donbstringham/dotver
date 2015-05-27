@@ -26,13 +26,16 @@ use Peridot\Plugin\Watcher\WatcherPlugin;
 return function(EventEmitterInterface $emitter) {
     (new CodeCoverageReporters($emitter))->register();
 
+    $emitter->on('peridot.start', function (\Peridot\Console\Environment $environment) {
+        $environment->getDefinition()->getArgument('path')->setDefault('specs');
+    });
+
     $emitter->on('code-coverage.start', function (AbstractCodeCoverageReporter $reporter) {
         $reporter->addDirectoryToWhitelist(__DIR__ . '/src')->addDirectoryToWhitelist(__DIR__ . '/specs');
     });
 
     $watcher = new WatcherPlugin($emitter);
     $watcher->track(__DIR__ . '/src');
-    $watcher->track(__DIR__ . '/module');
 
     new ProphecyPlugin($emitter);
 };

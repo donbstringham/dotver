@@ -58,3 +58,16 @@ describe('VersionFactory', function() {
         });
     });
 });
+
+describe('VersionFactory', function() {
+    describe('->createService()', function() {
+        it('should return a VersionService object', function() {
+            $factory = new VersionFactory();
+            $service = $factory->createService();
+
+            expect($service)->to->be->instanceof(
+                'Donbstringham\Version\Domain\Service\VersionService'
+            );
+        });
+    });
+});

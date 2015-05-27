@@ -45,8 +45,7 @@ class VersionFactory
      */
     public function createService()
     {
-        $semanticVersion = new SemanticVersion();
-        $service = new VersionService($semanticVersion);
+        $service = new VersionService($this);
         return $service;
     }
 
