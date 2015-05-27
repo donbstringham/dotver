@@ -1,13 +1,13 @@
 # dotver
 
-**GIT tags used as appliction version numbers**
+**GIT tags used as application version numbers**
 
-[![Stories in Ready](https://badge.waffle.io/donbstringham/d3x.png?label=ready&title=Ready)](https://waffle.io/donbstringham/dot-version)
+[![Stories in Ready](https://badge.waffle.io/donbstringham/dotver.svg?label=ready&title=Ready)](http://waffle.io/donbstringham/dotver)
 [![Build Status](https://travis-ci.org/donbstringham/dotver.svg)](https://travis-ci.org/donbstringham/dotver)
 [![Code Climate](https://codeclimate.com/repos/555f6342e30ba04f7c006ce7/badges/1f82d19b99ce8820cfb7/gpa.svg)](https://codeclimate.com/repos/555f6342e30ba04f7c006ce7/feed)
 [![Test Coverage](https://codeclimate.com/repos/555f6342e30ba04f7c006ce7/badges/1f82d19b99ce8820cfb7/coverage.svg)](https://codeclimate.com/repos/555f6342e30ba04f7c006ce7/coverage)
 
-This simple library reads the `git tag` command's output and stores it for use in a .ver file.  This file can then be used as the application's version.  Please follow [Semantic Versioning](http://semver.org/)! 
+This simple library reads the `git tag` command's output and stores it for use in a .ver file.  This file can then be used as the application's version.  Please follow [Semantic Versioning](http://semver.org/)!
 
 ## Requirements
 
@@ -35,24 +35,24 @@ Use the library in your PHP application
 
 ```
 <?php
-use Common\Utils\DotVersion;
+use Donbstringham\Version\Domain\Factory\VersionFactory;
+use Donbstringham\Version\Domain\Service\VersionService;
 
-// Instantiate the class
-$dotVersion = new DotVersion();
+// Instantiate the service class
+$service = new VersionService(new VersionFactory());
 
-// Reads version number from the '.version' file
-$version = $dotVersion->getVersion();
+// Returns version object based on the '.ver' file
+$version = $service->getVersion();
+
+// To get a version string
+$versionString = $version->getVersion();
 ```
      
 ## Usage
 
-- Instantiate the only class in the library:
+- Use the version number in the `.ver` file.
 
-	``` $dotVersion = new DotVersion(); ```
-
-- Use the version number in the `.version` file.
-
-	``` $dotVersion->getVersion(); ```
+	``` $version->getVersion(); ```
 	
 ---
 	
