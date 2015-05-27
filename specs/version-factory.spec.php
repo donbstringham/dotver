@@ -20,46 +20,106 @@
 use Donbstringham\Version\Domain\Factory\VersionFactory;
 
 describe('VersionFactory', function() {
-    describe('->createSemanticVersion()', function() {
-        it('should return a SemanticVersion object', function() {
+    describe('->createVersion("1.2.3")', function() {
+        it('should return a version object', function() {
             $factory = new VersionFactory();
-            $semVer = $factory->createSemanticVersion();
+            $semver = $factory->createVersion('1.2.3');
 
-            expect($semVer)->to->be->instanceof(
-                'Donbstringham\Version\Domain\Entity\SemanticVersion'
+            expect($semver)->to->be->instanceof(
+                'vierbergenlars\SemVer\version'
+            );
+        });
+        it('should have a major number of 1', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('1.2.3');
+
+            expect($semver->getMajor())->to->be->a('integer');
+            expect($semver->getMajor())->to->equal(1);
+        });
+        it('should have a minor number of 2', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('1.2.3');
+
+            expect($semver->getMinor())->to->be->a('integer');
+            expect($semver->getMinor())->to->equal(2);
+        });
+        it('should have a patch number of 3', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('1.2.3');
+
+            expect($semver->getPatch())->to->be->a('integer');
+            expect($semver->getPatch())->to->equal(3);
+        });
+        it('should have a value of 1.2.3', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('1.2.3');
+
+            expect($semver->getVersion())->to->equal('1.2.3');
+        });
+    });
+    describe('->createVersion("x.y.z")', function() {
+        it('should return NULL for invalid "a.b.c."', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('a.b.c');
+
+            expect($semver)->to->be->null;
+        });
+        it('should return NULL for invalid "1.2"', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('1.2');
+
+            expect($semver)->to->be->null;
+        });
+        it('should return NULL for invalid "1.2.z"', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('1.2.z');
+
+            expect($semver)->to->be->null;
+        });
+        it('should return NULL for invalid "x.2.3"', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createVersion('x.2.3');
+
+            expect($semver)->to->be->null;
+        });
+    });
+    describe('->createDefaultVersion()', function() {
+        it('should return a version object', function() {
+            $factory = new VersionFactory();
+            $semver = $factory->createDefaultVersion();
+
+            expect($semver)->to->be->instanceof(
+                'vierbergenlars\SemVer\version'
             );
         });
         it('should have a major number of 0', function() {
             $factory = new VersionFactory();
-            $semVer = $factory->createSemanticVersion();
+            $semver = $factory->createDefaultVersion();
 
-            expect($semVer->getMajor())->to->be->a('integer');
-            expect($semVer->getMajor())->to->equal(0);
+            expect($semver->getMajor())->to->be->a('integer');
+            expect($semver->getMajor())->to->equal(0);
         });
         it('should have a minor number of 1', function() {
             $factory = new VersionFactory();
-            $semVer = $factory->createSemanticVersion();
+            $semver = $factory->createDefaultVersion();
 
-            expect($semVer->getMinor())->to->be->a('integer');
-            expect($semVer->getMinor())->to->equal(1);
+            expect($semver->getMinor())->to->be->a('integer');
+            expect($semver->getMinor())->to->equal(1);
         });
         it('should have a patch number of 0', function() {
             $factory = new VersionFactory();
-            $semVer = $factory->createSemanticVersion();
+            $semver = $factory->createDefaultVersion();
 
-            expect($semVer->getPatch())->to->be->a('integer');
-            expect($semVer->getPatch())->to->equal(0);
+            expect($semver->getPatch())->to->be->a('integer');
+            expect($semver->getPatch())->to->equal(0);
         });
         it('should have a default value of 0.1.0', function() {
             $factory = new VersionFactory();
-            $semVer = $factory->createSemanticVersion();
+            $semver = $factory->createDefaultVersion();
 
-            expect($semVer->getVersion())->to->equal('0.1.0');
+            expect($semver->getVersion())->to->equal('0.1.0');
         });
     });
-});
-
-describe('VersionFactory', function() {
     describe('->createService()', function() {
         it('should return a VersionService object', function() {
             $factory = new VersionFactory();

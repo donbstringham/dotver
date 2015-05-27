@@ -20,6 +20,8 @@
 
 namespace Donbstringham\Version\Domain\Service;
 
+use Donbstringham\Version\Domain\Factory\VersionFactory;
+
 
 /**
  * Class VersionService
@@ -35,7 +37,6 @@ namespace Donbstringham\Version\Domain\Service;
 class VersionService
 {
     const GIT_TAG_COMMAND   = 'git tag';
-    const VERSION_DEFAULT   = '0.1.0';
     const VERSION_DELIMITER = '.';
     const VERSION_FILENAME  = '.ver';
 
@@ -63,44 +64,20 @@ class VersionService
     /**
      * Function getVersion
      *
-     * @return \Donbstringham\Version\Domain\Entity\SemanticVersion
+     * @return \vierbergenlars\SemVer\version
      *
      * @access public
      */
     public function getVersion()
     {
-        try {
-            $contents = parse_ini_file($this->versionFileName);
-        } catch (\Exception $e) {
-            $contents = $this->getOutputFromGitTagCall();
+        $version = parse_ini_file($this->versionFileName);
+        $version = $version['VERSION'];
+
+        if ($version === null) {
+            $version = $this->getOutputFromGitTagCall();
         }
 
-        return $this->stringToSemanticVersion($contents);
-    }
-
-    /**
-     * Function stringToSemanticVersion
-     *
-     * @param string $contents
-     * @return \Donbstringham\Version\Domain\Entity\SemanticVersion
-     *
-     * @access public
-     */
-    public function stringToSemanticVersion($contents = '')
-    {
-        $pos = strpos($contents, $this::VERSION_DELIMITER);
-
-        if ($pos === false) {
-            return $this->factory->createSemanticVersion();
-        }
-
-        $pieces = explode($this::VERSION_DELIMITER, $contents);
-
-        return $this->factory->createSemanticVersion(
-            (int)$pieces[0],
-            (int)$pieces[1],
-            (int)$pieces[2]
-        );
+        return $this->factory->createVersion($version);
     }
 
     /**
@@ -115,7 +92,7 @@ class VersionService
         exec($this::GIT_TAG_COMMAND, $output);
 
         if (empty($output)) {
-            return $this::VERSION_DEFAULT;
+            return VersionFactory::DEFAULT_VERSION;
         }
 
         return $output[0];

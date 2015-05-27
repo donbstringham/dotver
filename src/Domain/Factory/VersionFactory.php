@@ -20,7 +20,7 @@
 
 namespace Donbstringham\Version\Domain\Factory;
 
-use Donbstringham\Version\Domain\Entity\SemanticVersion;
+use vierbergenlars\SemVer\version;
 use Donbstringham\Version\Domain\Service\VersionService;
 
 /**
@@ -36,6 +36,8 @@ use Donbstringham\Version\Domain\Service\VersionService;
  */
 class VersionFactory
 {
+    const DEFAULT_VERSION = '0.1.0';
+
     /**
      * Function createService
      *
@@ -50,15 +52,34 @@ class VersionFactory
     }
 
     /**
-     * Function createSemanticVersion
+     * Function createVersion
      *
-     * @return \Donbstringham\Version\Domain\Entity\SemanticVersion
+     * @param string $version
+     * @return null|\vierbergenlars\SemVer\version
      *
      * @access public
      */
-    public static function createSemanticVersion()
+    public function createVersion($version = '')
     {
-        $semanticVersion = new SemanticVersion();
-        return $semanticVersion;
+        try {
+            $semver = new version($version);
+        } catch (\Exception $e) {
+            $semver = null;
+        }
+
+        return $semver;
+    }
+
+    /**
+     * Function createDefaultVersion
+     *
+     * @return \vierbergenlars\SemVer\version
+     *
+     * @access public
+     */
+    public function createDefaultVersion()
+    {
+        $semver = new version(self::DEFAULT_VERSION);
+        return $semver;
     }
 }

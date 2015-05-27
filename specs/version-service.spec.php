@@ -21,19 +21,43 @@ use Donbstringham\Version\Domain\Factory\VersionFactory;
 use Donbstringham\Version\Domain\Service\VersionService;
 
 describe('VersionService', function() {
-    beforeEach(function() {
-        $factory = new VersionFactory();
-        $this->service = new VersionService($factory);
-        $this->semVer = $this->service->getVersion();
+    describe('->getOutputFromGitTagCall()', function() {
+        it('should return "git tag" version number', function() {
+            exec('git tag', $output);
+            $expected = empty($output) ? '0.1.0' : $output[0];
+
+            $factory = new VersionFactory();
+            $service = new VersionService($factory);
+
+            expect($service->getOutputFromGitTagCall())->equal($expected);
+        });
     });
     describe('->getVersion()', function() {
-        it('should return "git tag" version number', function() {
-            expect($this->semVer)->a->instanceof(
-                '\Donbstringham\Version\Domain\Entity\SemanticVersion'
+        it('should return a version object', function() {
+
+            $factory = new VersionFactory();
+            $service = new VersionService($factory);
+            $semver = $service->getVersion();
+
+            expect($semver)->a->instanceof(
+                '\vierbergenlars\SemVer\version'
             );
         });
-        it('should return default value of 0.1.0', function() {
-            expect($this->semVer->getVersion())->equal('0.1.0');
+
+        exec('git tag', $output);
+        $expected = empty($output) ? '0.1.0' : $output[0];
+
+        it('should return a value of '.$expected, function() {
+            exec('git tag', $output);
+            $expected = empty($output) ? '0.1.0' : $output[0];
+
+            $factory = new VersionFactory();
+            $service = new VersionService($factory);
+
+            $semVer = $service->getVersion();
+            $version = $semVer->getVersion();
+
+            expect($version)->equal($expected, 'returned '.$version);
         });
     });
 });
